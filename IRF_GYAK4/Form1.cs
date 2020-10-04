@@ -103,11 +103,10 @@ namespace IRF_GYAK4
                 values[counter, 8] = "";
                 counter++;
             }
+
             xlSheet.get_Range(
              GetCell(2, 1),
              GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
-
-
 
 
             //Formázás
@@ -123,7 +122,6 @@ namespace IRF_GYAK4
             int lastRowID = xlSheet.UsedRange.Rows.Count;
             Excel.Range fullRange = xlSheet.get_Range(GetCell(1, lastRowID), GetCell(1, 9));
             fullRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
-
 
         }
 
@@ -142,9 +140,6 @@ namespace IRF_GYAK4
                 ExcelCoordinate += x.ToString();
 
                 return ExcelCoordinate;
-
-
-      
         }
 
     }
