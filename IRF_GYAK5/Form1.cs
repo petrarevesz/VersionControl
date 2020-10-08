@@ -69,7 +69,17 @@ namespace IRF_GYAK5
             return value;
         }
 
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
 
+            sfd.InitialDirectory = Application.StartupPath;
+           // sfd.Filter = "Comma Seperated Values (*.csv)|*.csv"; // A kiválasztható fájlformátumokat adjuk meg ezzel a sorral. Jelen esetben csak a csv-t fogadjuk el
+            sfd.DefaultExt = "txt"; 
+            sfd.AddExtension = true;
 
+            if (sfd.ShowDialog() != DialogResult.OK) return;
+
+        }
     }
 }
