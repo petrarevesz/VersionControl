@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml;
 
 namespace IRF_GYAK6
@@ -21,7 +22,7 @@ namespace IRF_GYAK6
         {
             InitializeComponent();
             GetService();
-
+            GetChart();
         }
         private void GetService()
         {
@@ -53,7 +54,6 @@ namespace IRF_GYAK6
                 
                 rate.Date = DateTime.Parse(element.GetAttribute("date"));
 
-
                 var childElement = (XmlElement)element.ChildNodes[0];
                 rate.Currency = childElement.GetAttribute("curr");
 
@@ -64,9 +64,27 @@ namespace IRF_GYAK6
                     rate.Value = value / unit;
             }
 
+        }
+        private void GetChart()
+        {
+            chartRateData.DataSource = Rates;
+
+            var series = chartRateData.Series[0];
+            series.ChartType = SeriesChartType.Line;
+            series.XValueMember = "Date";
+            series.YValueMembers = "Value";
+            series.BorderWidth = 2;
+
+            var legend = chartRateData.Legends[0];
+            legend.Enabled = false;
+
+            var chartArea = chartRateData.ChartAreas[0];
+            chartArea.AxisX.MajorGrid.Enabled = false;
+            chartArea.AxisY.MajorGrid.Enabled = false;
+            chartArea.AxisY.IsStartedFromZero = false;
+
 
         }
 
-       
     }
 }
