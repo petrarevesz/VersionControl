@@ -8,8 +8,8 @@ namespace IRF_GYAK6.Entities
 {
     class RateData
     {
-        DateTime Date;
-        string Currency;
-        decimal Value;
+      public  DateTime Date;
+       public string Currency;
+      public   decimal Value;
     }
 }
