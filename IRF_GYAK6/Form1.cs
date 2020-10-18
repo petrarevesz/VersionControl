@@ -1,4 +1,5 @@
-﻿using IRF_GYAK6.MnbServiceReference;
+﻿using IRF_GYAK6.Entities;
+using IRF_GYAK6.MnbServiceReference;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,8 @@ namespace IRF_GYAK6
 {
     public partial class Form1 : Form
     {
+        BindingList<RateData> Rates = new BindingList<RateData>();
+
         public Form1()
         {
             InitializeComponent();
@@ -33,8 +36,10 @@ namespace IRF_GYAK6
             var response = mnbService.GetExchangeRates(request);
 
             var result = response.GetExchangeRatesResult;
-        }
-        
+            
 
+        }
+
+       
     }
 }
