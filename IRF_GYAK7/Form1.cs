@@ -26,8 +26,8 @@ namespace IRF_GYAK7
 
 
             Population = GetPopulation(@"C:\Temp\nép.csv");
-            //    BirthProbabilities = GetBirthProbabilities(@"C:\Temp\születés.csv");
-            //  DeathProbabilities = GetDeathProbabilities(@"C:\Temp\halál.csv");
+            BirthProbabilities = GetBirthProbabilities(@"C:\Temp\születés.csv");
+            DeathProbabilities = GetDeathProbabilities(@"C:\Temp\halál.csv");
 
 
 
@@ -71,9 +71,51 @@ namespace IRF_GYAK7
             return population;
         }
 
+        public List<BirthProbability> GetBirthProbabilities(string csvpath)
+        {
+            List<BirthProbability> birthprobability = new List<BirthProbability>();
+
+            using (StreamReader sr = new StreamReader(csvpath, Encoding.Default))
+            {
+                while (!sr.EndOfStream)
+                {
+                    var line = sr.ReadLine().Split(';');
+                    birthprobability.Add(new BirthProbability()
+                    {
+                        Age = int.Parse(line[0]),
+                        NbrOfChildren = int.Parse(line[1]),
+                        BrthProbability = double.Parse(line[2])
+                    });
+                }
+            }
+
+            return birthprobability;
+        }
 
 
+        public List<DeathProbability> GetDeathProbabilities(string csvpath)
+        {
+            List<DeathProbability> deathprobability = new List<DeathProbability>();
 
+            using (StreamReader sr = new StreamReader(csvpath, Encoding.Default))
+            {
+                while (!sr.EndOfStream)
+                {
+                    var line = sr.ReadLine().Split(';');
+                    deathprobability.Add(new DeathProbability()
+                    {
+                        Age = int.Parse(line[0]),
+                        DthProbability = double.Parse(line[1]),
+                        Gender = (Gender)Enum.Parse(typeof(Gender), line[2]),
+                    });
+                }
+            }
+
+            return deathprobability;
+        }
+
+
+        
         private void SimStep(int year, Person person)
         {
             
