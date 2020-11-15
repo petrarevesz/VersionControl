@@ -15,22 +15,33 @@ namespace IRF_GYAK8
     public partial class Form1 : Form
     {
         private List<Toy> _toys = new List<Toy>();
-        private BallFactory _factory;
-        public BallFactory IToyFactory
+
+
+
+        private Toy _nextToy;
+
+        private IToyFactory _factory;
+        public IToyFactory Factory
         {
             get { return _factory; }
-            set { _factory = value; }
+            set
+            {
+                _factory = value;
+                DisplayNext();
+            }
         }
 
         public Form1()
         {
             InitializeComponent();
-            IToyFactory = new BallFactory();
+            Factory = new BallFactory();
         }
+
+
 
         private void CreateTimer_Tick(object sender, EventArgs e)
         {
-            var ball = IToyFactory.CreateNew();
+            var ball = Factory.CreateNew();
             _toys.Add(ball);
             ball.Left = -ball.Width;
             mainPanel.Controls.Add(ball);
@@ -54,15 +65,25 @@ namespace IRF_GYAK8
             }
         }
 
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            Factory = new CarFactory();
+        }
 
-        /* private void CreateTimer_Tick(object sender, EventArgs e)
-         {
-             
-         }
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            Factory = new BallFactory();
+        }
 
-       /*  private void ConveyorTimer_Tick_1(object sender, EventArgs e)
-         {
-             
-         }*/
+        private void DisplayNext()
+        {
+            if (_nextToy != null)
+                Controls.Remove(_nextToy);
+            _nextToy = Factory.CreateNew();
+            _nextToy.Top = lblNext.Top + lblNext.Height + 20;
+            _nextToy.Left = lblNext.Left;
+            Controls.Add(_nextToy);
+
+        }
     }
 }
