@@ -15,6 +15,7 @@ namespace IRF_GYAK8.Entities
             AutoSize = false;
             Height = 50;
             Width = 50;
+            Paint += Ball_Paint;
 
         }
 

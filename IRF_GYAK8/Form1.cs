@@ -27,7 +27,6 @@ namespace IRF_GYAK8
             Factory = new BallFactory();
         }
 
-
         private void CreateTimer_Tick(object sender, EventArgs e)
         {
             var ball = Factory.CreateNew();
@@ -53,5 +52,16 @@ namespace IRF_GYAK8
                 _balls.Remove(oldestBall);
             }
         }
+
+
+        /* private void CreateTimer_Tick(object sender, EventArgs e)
+         {
+             
+         }
+
+       /*  private void ConveyorTimer_Tick_1(object sender, EventArgs e)
+         {
+             
+         }*/
     }
 }
