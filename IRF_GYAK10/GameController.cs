@@ -10,7 +10,7 @@ namespace IRF_GYAK10
     {
         internal GameArea ActivateDisplay()
         {
-            throw new NotImplementedException();
+          
         }
     }
 }
