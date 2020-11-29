@@ -59,5 +59,14 @@ namespace IRF_GYAK10
             }
             gc.Start();
         }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            gc.ResetCurrentLevel();
+            gc.AddPlayer(winnerBrain.Clone());
+            gc.AddPlayer();
+            ga.Focus();
+            gc.Start(true);
+        }
     }
 }
