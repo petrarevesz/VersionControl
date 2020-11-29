@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace IRF_GYAK10
 {
-    public partial class Form1 : Form
+    public partial class GameArea : UserControl
     {
-        GameController gc = new GameController();
-        GameArea ga;
-
-        public Form1()
+        public GameArea()
         {
             InitializeComponent();
-            ga = gc.ActivateDisplay();
-            this.Controls.Add(ga);
         }
     }
 }
